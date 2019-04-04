@@ -85,8 +85,54 @@ router.get('/articles', function(req, res) {
         console.log(err);
       } else {
         var expbsObject = {articles: data};
+        console.log(expbsObject.articles[0]);
         res.render('index', expbsObject);
       }
+    });
+});
+
+router.get('/articles/:id', function(req, res) {
+  Article.findOne({_id: req.params.id})
+    .populate('Comment')
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
+router.post('/articles/:id', function(req, res) {
+  Comment.create(req.body)
+    .then(function(dbComment) {
+      return Article.findOneAndUpdate(
+        {_id: req.params.id},
+        {$push: {comments: dbComment}},
+        {new: true},
+      );
+    })
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
+router.put('/articles/delete/:id', function(req, res) {
+  Comment.update(req.body)
+    .then(function(dbComment) {
+      return Article.findOneAndUpdate(
+        {},
+        {$pull: {comments: {$in: [dbComment._id]}}},
+        {},
+      );
+    })
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
     });
 });
 

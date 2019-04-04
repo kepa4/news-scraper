@@ -10,7 +10,22 @@
         </div>
         <div class="card-action">
           <a href="https://www.nytimes.com{{link}}">link to article</a>
-          <a>Comments</a>
+        </div>
+        <div class="card-action">
+        <div class="row">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="commentInput" class="materialize-textarea"></textarea>
+                <label for="commentInput">Comment</label>
+              </div>
+              <button data-id="{{_id}}" id="commentSubmit" class="btn waves-effect waves-light">Post Comment</button>
+            </div>
+          <ul id="collection" class="collection"> 
+            {{#each comments}}
+              {{> articles/comments-block}}
+            {{/each}}
+          </ul>
+        </div> 
         </div>
       </div>
     </div>
