@@ -3,15 +3,15 @@ A Web Scraper for New York Times World News section
 
 
 ## Technologies used
-⋅⋅⋅Express
-⋅⋅⋅Mongodb
-⋅⋅⋅Mongoose
-⋅⋅⋅Handlebars
-⋅⋅⋅Axios
-⋅⋅⋅Cheerio
+⋅⋅⋅ Express
+⋅⋅⋅ Mongodb
+⋅⋅⋅ Mongoose
+⋅⋅⋅ Handlebars
+⋅⋅⋅ Axios
+⋅⋅⋅ Cheerio
 
 
-#Setup
+# Setup
 ``` 
     git clone git@github.com:kepa4/news-scraper.git
     npm install
